@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="jquery-3.2.0.min.js"></script>
+	</head>
+	<body>
+		<form action="create_game.php" method="POST" id="sportForm">
+			Date:<input type="date" name="date" required><br><br>
+			Junior Varsity:<input type="radio" name="level" value="Junior Varsity" required>
+			Varsity:<input type="radio" name="level" value="Varsity" required><br><br>
+			Sport:
+			<select name="sport" required>
+					<option value="Football">Football</option>
+					<option value="Volleyball">Volleyball</option>
+					<option value="Baseball">Baseball</option>
+			</select><br><br>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+		<br>
+		<button onclick="window.location.href = 'view_table.php'">View Table</button>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$("#sportForm").on("submit", function(e) {
+				e.preventDefault();
+
+				$.ajax({
+	            type: 'POST',
+	            url: 'create_game.php',
+	            data: $('#sportForm').serialize(),
+	            success: function () {
+	              alert('Your game has been created!');
+	            }
+	          });
+			});
+		});
+	</script>
+</html>
