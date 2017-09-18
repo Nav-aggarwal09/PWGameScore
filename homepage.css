@@ -1,0 +1,81 @@
+/* homepage Stylehseet */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 18px;
+    font-family: Georgia, Time, serif;
+    background: #f2f2f2
+}
+
+h1,h2,h3 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#menu {
+    font-family: sans-serif;
+    border: 1px solid red;
+    display: inline-block;
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+    
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: blueviolet;
+
+}
+#content-container {
+    max-width: 75%;
+    margin-left: 30px;
+    /* margin-top: 30px; /* */
+    margin-right: 30px;
+    /* margin: 10px 70px 15px 20px; */
+    float: right;
+    display: inline-block;
+}
+
+
+
+header {
+    text-align: center;
+    background: #fff;
+    color: #1a71b8;
+    padding: 10px
+}
+
+article {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+
+article p {
+    margin: 0 0 1em;
+}
+
+section.post-head small {
+    display: block;
+    /* margin: 0 0 20px;
+    padding: 0 0 20px; */
+    border-bottom: solid 1px #fff;
+    color: #00c6a0;
+}
+
+section.post-foot {
+    font-size: 14px;
+    border-top: solid 1px #eee;
+    margin: 20px 0 0;
+    padding: 20px 0 0;
+}
