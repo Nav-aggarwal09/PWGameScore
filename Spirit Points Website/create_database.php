@@ -1,6 +1,10 @@
-<?php 
+<?php
 
-$conn = mysqli_connect("testdbinstance.cjjppwhwhmwv.us-west-1.rds.amazonaws.com", "root", "mypassword");
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+require("mysqlinfo.php");
+
+$conn = mysqli_connect($ip, $uname, $pass);
 
 $sql = "DROP DATABASE main";
 $conn->query($sql);
@@ -16,7 +20,7 @@ $sql = "DROP TABLE points";
 $conn->query($sql);
 
 $conn->close();
-$conn = mysqli_connect("testdbinstance.cjjppwhwhmwv.us-west-1.rds.amazonaws.com", "root", "mypassword", "main");
+$conn = mysqli_connect($ip, $uname, $pass, $dbname);
 
 $sql = "CREATE TABLE points (
 		RowID integer NOT NULL AUTO_INCREMENT,
@@ -32,6 +36,9 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
+$sql = "DROP TABLE users";
+$conn->query($sql);
+
 $sql = "CREATE TABLE users (
 		RowID integer NOT NULL AUTO_INCREMENT,
 		Username varchar(16),
@@ -44,12 +51,41 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "INSERT INTO users (Username, Password) VALUES ('default', 'password')";
+$sql = "INSERT INTO users (Username, Password) VALUES ('default', 'password'), ('Jackee', 'password'), ('Mr. Lemmon', 'password')";
 $conn->query($sql);
 
-$sql = "INSERT INTO points (Seniors, Juniors, Sophomores, Freshmen) VALUES (100, 100, 100, 100)";
+$sql = "DROP TABLE log";
+$conn->query($sql);
+
+$sql = "CREATE TABLE log (
+		ID integer NOT NULL AUTO_INCREMENT,
+		points integer,
+		action varchar(12),
+		grade varchar(12),
+		user varchar(16),
+		eventdate date,
+		reason varchar(64),
+		PRIMARY KEY (ID)
+		)";
+$conn->query($sql);
+
+$sql = "INSERT INTO points (Seniors, Juniors, Sophomores, Freshmen) VALUES (0, 0, 0, 0)";
+$conn->query($sql);
+
+$sql = "DROP TABLE upcoming";
+$conn->query($sql);
+
+$sql = "CREATE TABLE upcoming (
+		ID integer NOT NULL AUTO_INCREMENT,
+		title varchar(64),
+		description varchar(128),
+		eventdate date,
+		PRIMARY KEY (ID)
+		)";
 $conn->query($sql);
 
 $conn->close();
+
+}
 
 ?>

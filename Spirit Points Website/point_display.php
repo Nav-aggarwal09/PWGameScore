@@ -1,8 +1,9 @@
 <?php
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-	$conn = mysqli_connect("testdbinstance.cjjppwhwhmwv.us-west-1.rds.amazonaws.com", "root", "mypassword", "main");
+	require("mysqlinfo.php");
 
+	$conn = mysqli_connect($ip, $uname, $pass, $dbname);
 	$sql = "SELECT * FROM points WHERE RowID = 1";
 	$result = $conn->query($sql);
 	while($row = $result->fetch_assoc()) {

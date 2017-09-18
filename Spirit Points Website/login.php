@@ -12,19 +12,24 @@ if($_SESSION["logged"] == 1) {
 	<link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
+<div class="container">
+<div class="col-4" style="width: 15%; margin-left: 40%; margin-right: 40%; text-align: center; border-radius: 10px; padding-top: 200px; padding-left: 40px; padding-right: 40px; padding-bottom: 200px;">
 
-<form action="login_redirect.php" method="POST" id="login-form">
+<p id='error' style="background-color: #fff; border-radius: 10px;"></p>
 
-Username:
-<input type="text" name="username" maxlength="16"><br>
-Password:
-<input type="text" name="password" maxlength="16"><br>
+<form action="login_redirect.php" method="POST" id="login-form" style="text-align: center;">
+
+<span style="display: block;">Username</span>
+<input class="textfield" type="text" id="username" name="username" maxlength="16" autocomplete="off" style="display: block;" required>
+<span style="display: block;">Password</span>
+<input class="textfield" type="password" id="password" name="password" class="form-control" maxlength="16" autocomplete="off" style="display: block;" required>
 <input type="submit" value="Submit">
 
 </form>
 <button onclick="window.location.href='index.php'">Back to Home</button>
 
-<p id='error'></p>
+</div>
+</div>
 </body>
 
 <script>
@@ -36,7 +41,8 @@ Password:
 				type: "POST",
 				url: "login_redirect.php",
 				data: $("#login-form").serialize(),
-				success: function() {			
+				success: function() {	
+					$("#password").select();		
 					eval(loginRequest.responseText);
 				}
 			});
