@@ -1,0 +1,6 @@
+Progammatically add cookies to phantomjs (get_page.js)
+
+Open cookie.txt
+Copy cookie value (Don't need domain or anything else, just value)
+Open get_page.js
+Paste that value into the cookie value field of gate_page.js
